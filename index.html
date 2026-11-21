@@ -303,6 +303,16 @@
             <a id="btnWhatsAppDirect" href="#" target="_blank" class="w-full inline-flex items-center justify-center gap-3 bg-neon hover:bg-neonHover text-black font-black font-display py-4 px-6 rounded-xl text-base uppercase tracking-wider transition shadow-2xl shadow-neon/30">
               <span>💬 CONFIRM DISPUTE FILING ON WHATSAPP</span>
             </a>
+          <!-- Viral Inbound Sharing Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 font-mono text-xs">
+            <button type="button" onclick="shareToWhatsAppGroup()" class="flex items-center justify-center gap-2 bg-emerald-950 hover:bg-emerald-900 border border-emerald-600/40 text-emerald-300 py-3 px-4 rounded-xl transition">
+              <span>📲</span> Share to Kitchen WhatsApp Group
+            </button>
+            <button type="button" onclick="shareToTwitterX()" class="flex items-center justify-center gap-2 bg-zinc-950 hover:bg-zinc-900 border border-zinc-700 text-zinc-300 py-3 px-4 rounded-xl transition">
+              <span>𝕏</span> Tag Aggregators on Twitter / X
+            </button>
+          </div>
+
             <span class="block text-[11px] text-zinc-400 font-mono mt-2">
               🔒 100% Free For First 5 Audits • Money Directly Credited to Your Bank Account
             </span>
@@ -896,6 +906,21 @@
 
     async function triggerRevenueCatCheckout(productId) {
       await triggerDualCheckout();
+    }
+
+    
+    function shareToWhatsAppGroup() {
+      const store = currentStore || "Our Kitchen";
+      const rec = document.getElementById('auditRecoverCash') ? document.getElementById('auditRecoverCash').innerText : "thousands";
+      const text = `Hey guys, just tested our kitchen payout sheet for ${store} on this free leak scanner: found ${rec} in unverified customer refund deductions. Test your kitchen for free here: https://rohith0707.github.io/kitchenaudit-app/`;
+      window.open('https://api.whatsapp.com/send?text=' + encodeURIComponent(text), '_blank');
+    }
+
+    function shareToTwitterX() {
+      const store = currentStore || "our kitchen";
+      const rec = document.getElementById('auditRecoverCash') ? document.getElementById('auditRecoverCash').innerText : "thousands";
+      const text = `Checked delivery settlement math for ${store}: estimated ${rec} lost to unverified customer refunds & spillage deductions without photo verification. Is this standard policy? @zomato @swiggy @deepigoyal https://rohith0707.github.io/kitchenaudit-app/`;
+      window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(text), '_blank');
     }
 
     function openPricingModal() {
