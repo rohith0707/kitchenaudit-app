@@ -251,6 +251,10 @@
           <button type="submit" class="w-full bg-neon hover:bg-neonHover text-black font-black font-display py-4 rounded-xl text-base uppercase tracking-wider transition shadow-xl shadow-neon/20 flex items-center justify-center gap-2">
             <span>⚡ SCAN PAYCHECK & RECOVER CASH (AUDIT 1 OF 5 FREE)</span>
           </button>
+
+          <button type="button" onclick="loadSampleAudit()" class="w-full bg-zinc-900/90 hover:bg-zinc-800 border border-zinc-700 text-zinc-300 hover:text-white font-bold font-mono py-2.5 rounded-xl text-xs uppercase tracking-wider transition flex items-center justify-center gap-2">
+            <span>🔍</span> 1-CLICK INSTANT DEMO: PREVIEW SAMPLE BIRYANI AUDIT
+          </button>
         </form>
 
         <div id="scanningBox" class="hidden text-center py-12 space-y-4">
@@ -613,6 +617,24 @@
     let freeAuditsUsed = 1;
     const MAX_FREE_AUDITS = 5;
     const FOUNDER_PHONE = "919381691325"; // Your WhatsApp number
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const curParam = (urlParams.get('cur') || '').toLowerCase();
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+      if (curParam === 'inr' || (!curParam && (tz.includes('Kolkata') || tz.includes('Calcutta') || tz.includes('Asia')))) {
+        setCurrency('INR');
+      } else {
+        setCurrency('USD');
+      }
+    });
+
+    function loadSampleAudit() {
+      document.getElementById('storeInput').value = activeCurr === 'INR' ? "Bawarchi Biryani Central" : "Smash Burger & Wings";
+      document.getElementById('phoneInput').value = activeCurr === 'INR' ? "+91 93816 91325" : "+1 (555) 019-2834";
+      document.getElementById('platformInput').value = activeCurr === 'INR' ? "Zomato & Swiggy" : "DoorDash & UberEats";
+      runLiveAudit(new Event('submit'));
+    }
 
     function switchView(viewName) {
       const vScanner = document.getElementById('viewScanner');
